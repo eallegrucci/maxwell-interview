@@ -26,15 +26,7 @@ def parse_input
     return items
 end
 
-def price_calculator
-    prices = {"apple" => 0.89, "banana" => 0.99, "bread" => 2.17, "milk" => 3.97}
-    groceries = {"apple" => 0, "banana" => 0, "bread" => 0, "milk" => 0}
-    itemCost = {}
-
-    print_welcome(prices)
-
-    items = parse_input
-
+def count_items(items, groceries)
     items.each do |item|
         if item.include? "apple"
             groceries["apple"] += 1
@@ -46,6 +38,18 @@ def price_calculator
             groceries["milk"] += 1
         end
     end
+end
+
+def price_calculator
+    prices = {"apple" => 0.89, "banana" => 0.99, "bread" => 2.17, "milk" => 3.97}
+    groceries = {"apple" => 0, "banana" => 0, "bread" => 0, "milk" => 0}
+    itemCost = {}
+
+    print_welcome(prices)
+
+    items = parse_input
+
+    count_items(items, groceries)
 
     saved = 0
     total = 0
