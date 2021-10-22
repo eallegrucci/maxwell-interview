@@ -1,10 +1,6 @@
 #!/usr/bin/env ruby
 
-def price_calculator
-    prices = {"apple" => 0.89, "banana" => 0.99, "bread" => 2.17, "milk" => 3.97}
-    groceries = {"apple" => 0, "banana" => 0, "bread" => 0, "milk" => 0}
-    itemCost = {}
-
+def print_welcome(prices)
     puts "Welcome to Emma's Market"
     puts
     puts "Here are the items for sale today"
@@ -21,6 +17,14 @@ def price_calculator
         end
     end
     puts
+end
+
+def price_calculator
+    prices = {"apple" => 0.89, "banana" => 0.99, "bread" => 2.17, "milk" => 3.97}
+    groceries = {"apple" => 0, "banana" => 0, "bread" => 0, "milk" => 0}
+    itemCost = {}
+
+    print_welcome(prices)
 
     puts "Please enter all the items purchased seperated by a comma"
     result = gets
@@ -59,8 +63,16 @@ def price_calculator
         end
     end
 
-    puts total
-    puts saved
+    puts
+    puts "Item\tQuantity\tPrice"
+    puts "-------------------------------------"
+    itemCost.each do |key, value|
+        puts "#{key}\t#{groceries[key]}\t\t$#{value}"
+    end
+    puts
+    puts "Total price : $#{total.round(2)}"
+    puts "You saved $#{saved.round(2)} today."
+    puts
 end
 
 price_calculator
