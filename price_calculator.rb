@@ -40,17 +40,7 @@ def count_items(items, groceries)
     end
 end
 
-def price_calculator
-    prices = {"apple" => 0.89, "banana" => 0.99, "bread" => 2.17, "milk" => 3.97}
-    groceries = {"apple" => 0, "banana" => 0, "bread" => 0, "milk" => 0}
-    itemCost = {}
-
-    print_welcome(prices)
-
-    items = parse_input
-
-    count_items(items, groceries)
-
+def calculate_total(groceries, itemCost, prices)
     saved = 0
     total = 0
     groceries.each do |key, value|
@@ -71,6 +61,21 @@ def price_calculator
             total += itemCost[key]
         end
     end
+    return total, saved
+end
+
+def price_calculator
+    prices = {"apple" => 0.89, "banana" => 0.99, "bread" => 2.17, "milk" => 3.97}
+    groceries = {"apple" => 0, "banana" => 0, "bread" => 0, "milk" => 0}
+    itemCost = {}
+
+    print_welcome(prices)
+
+    items = parse_input
+
+    count_items(items, groceries)
+
+    result = calculate_total(groceries, itemCost, prices)
 
     puts
     puts "Item\tQuantity\tPrice"
@@ -79,8 +84,8 @@ def price_calculator
         puts "#{key}\t#{groceries[key]}\t\t$#{value}"
     end
     puts
-    puts "Total price : $#{total.round(2)}"
-    puts "You saved $#{saved.round(2)} today."
+    puts "Total price : $#{result[0].round(2)}"
+    puts "You saved $#{result[1].round(2)} today."
     puts
 end
 
