@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+# Prints a welcome message to the user
 def print_welcome(prices)
     puts "Welcome to Emma's Market"
     puts
@@ -19,6 +20,7 @@ def print_welcome(prices)
     puts
 end
 
+# Receives the user's input and parses it into an array of strings
 def parse_input
     puts "Please enter all the items purchased seperated by a comma"
     result = gets
@@ -26,6 +28,7 @@ def parse_input
     return items
 end
 
+# Checks the array items and increments the groceries hash if the item is able to be purchased
 def count_items(items, groceries)
     items.each do |item|
         if item.include? "apple"
@@ -40,6 +43,7 @@ def count_items(items, groceries)
     end
 end
 
+# Calculates the total price of the groceries and the total amount saved
 def calculate_total(groceries, itemCost, prices)
     saved = 0
     total = 0
@@ -64,6 +68,7 @@ def calculate_total(groceries, itemCost, prices)
     return total, saved
 end
 
+# Prints the receipt of the purchase, the total cost, and the amount saved
 def print_results(itemCost, groceries, result)
     puts
     puts "Item\tQuantity\tPrice"
@@ -78,18 +83,26 @@ def print_results(itemCost, groceries, result)
 end
 
 def price_calculator
+    # prices hash contains the price for each item
     prices = {"apple" => 0.89, "banana" => 0.99, "bread" => 2.17, "milk" => 3.97}
+    # groceries hash contains the item and its count being purchased
     groceries = {"apple" => 0, "banana" => 0, "bread" => 0, "milk" => 0}
+    # itemCost hash contains the total cost of the items the user is buying
     itemCost = {}
 
+    # Outputting a welcome message and the items for sale
     print_welcome(prices)
 
+    # Parsing the users input into an array of strings
     items = parse_input
 
+    # Counting the total number of items and adding them to the groceries hash
     count_items(items, groceries)
 
+    # Calculating the total price and the amount saved
     result = calculate_total(groceries, itemCost, prices)
 
+    # Outputting the results
     print_results(itemCost, groceries, result)
 end
 
