@@ -19,6 +19,13 @@ def print_welcome(prices)
     puts
 end
 
+def parse_input
+    puts "Please enter all the items purchased seperated by a comma"
+    result = gets
+    items = result.split(",")
+    return items
+end
+
 def price_calculator
     prices = {"apple" => 0.89, "banana" => 0.99, "bread" => 2.17, "milk" => 3.97}
     groceries = {"apple" => 0, "banana" => 0, "bread" => 0, "milk" => 0}
@@ -26,9 +33,7 @@ def price_calculator
 
     print_welcome(prices)
 
-    puts "Please enter all the items purchased seperated by a comma"
-    result = gets
-    items = result.split(",")
+    items = parse_input
 
     items.each do |item|
         if item.include? "apple"
