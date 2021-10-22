@@ -64,6 +64,19 @@ def calculate_total(groceries, itemCost, prices)
     return total, saved
 end
 
+def print_results(itemCost, groceries, result)
+    puts
+    puts "Item\tQuantity\tPrice"
+    puts "-------------------------------------"
+    itemCost.each do |key, value|
+        puts "#{key}\t#{groceries[key]}\t\t$#{value}"
+    end
+    puts
+    puts "Total price : $#{result[0].round(2)}"
+    puts "You saved $#{result[1].round(2)} today."
+    puts
+end
+
 def price_calculator
     prices = {"apple" => 0.89, "banana" => 0.99, "bread" => 2.17, "milk" => 3.97}
     groceries = {"apple" => 0, "banana" => 0, "bread" => 0, "milk" => 0}
@@ -77,16 +90,7 @@ def price_calculator
 
     result = calculate_total(groceries, itemCost, prices)
 
-    puts
-    puts "Item\tQuantity\tPrice"
-    puts "-------------------------------------"
-    itemCost.each do |key, value|
-        puts "#{key}\t#{groceries[key]}\t\t$#{value}"
-    end
-    puts
-    puts "Total price : $#{result[0].round(2)}"
-    puts "You saved $#{result[1].round(2)} today."
-    puts
+    print_results(itemCost, groceries, result)
 end
 
 price_calculator
